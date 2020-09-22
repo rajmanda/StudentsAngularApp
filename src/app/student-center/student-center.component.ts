@@ -26,7 +26,10 @@ export class StudentCenterComponent implements OnInit {
 
   ngOnInit() {
     this._studentService.getStudents()
-      .subscribe(resstudentData => this.students = resstudentData);
+    .subscribe(resstudentData => {
+      this.students = resstudentData;
+      this.selectedStudent = this.students[1];
+    });
   }
 
   onFileSelected(event) {
@@ -35,6 +38,7 @@ export class StudentCenterComponent implements OnInit {
   }
 
   onSelectstudent(student: any) {
+    this.hidenewStudent = true ;
     console.log("caught onSelectstudent event", student);
     this.selectedStudent = student;
   }
