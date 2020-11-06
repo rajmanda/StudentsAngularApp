@@ -11,7 +11,7 @@ FROM node:12.2.0
 
 # Use `node` user that `node:lts-alpine` provides
 #RUN mkdir -p /app
-RUN chown node /app
+#RUN chown node /app
 #USER node
 #WORKDIR /app
 
