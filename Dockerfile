@@ -30,3 +30,6 @@ EXPOSE 4200
 
 ###### To Run the docker Image run the following command 
 # docker run -d -p 4200:4200 docker.io/library/studentsapp
+
+#Refer:
+# https://mherman.org/blog/dockerizing-an-angular-app/ 
