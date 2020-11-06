@@ -9,6 +9,10 @@ FROM node:12.2.0
 #RUN sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
 #RUN apt-get update && apt-get install -yq google-chrome-stable
 
+# Use `node` user that `node:lts-alpine` provides
+RUN mkdir -p /app && chown -R node /app
+USER node
+
 # set working directory
 WORKDIR /app
 
