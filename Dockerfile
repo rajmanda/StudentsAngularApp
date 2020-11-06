@@ -10,10 +10,10 @@ FROM node:12.2.0
 #RUN apt-get update && apt-get install -yq google-chrome-stable
 
 # Use `node` user that `node:lts-alpine` provides
-RUN mkdir -p /app
+#RUN mkdir -p /app
 RUN chown node /app
-USER node
-WORKDIR /app
+#USER node
+#WORKDIR /app
 
 
 # set working directory
