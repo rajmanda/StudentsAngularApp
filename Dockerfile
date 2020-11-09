@@ -20,7 +20,7 @@ FROM node:12.2.0
 WORKDIR /app
 
 # set permissions to the user 
-sudo chown -R $USER /app
+CMD sudo chown -R $USER /app
 
 # add `/app/node_modules/.bin` to $PATH
 ENV PATH /app/node_modules/.bin:$PATH
