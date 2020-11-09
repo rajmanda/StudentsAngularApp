@@ -25,6 +25,9 @@ ENV PATH /app/node_modules/.bin:$PATH
 # install and cache app dependencies
 COPY package.json /app/package.json
 RUN npm install
+RUN chown -R admin:admin /app
+RUN chmod 755 /app
+USER admin
 COPY . /app
 RUN npm install -g @angular/cli
 
