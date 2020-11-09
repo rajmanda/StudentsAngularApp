@@ -28,11 +28,16 @@ ENV PATH /app/node_modules/.bin:$PATH
 # install and cache app dependencies
 COPY package.json /app/package.json
 RUN npm install
+
+
+RUN sudo chown -R $USER /app
+RUN chmod 755 /app
+USER $USER
+
+
 COPY . /app
 RUN npm install -g @angular/cli
 
-# add app - why is this not working
-#COPY . /app
 
 # start app
 CMD ng serve --host 0.0.0.0 --port 4200
