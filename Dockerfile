@@ -27,7 +27,7 @@ COPY package.json /app/package.json
 RUN npm install
 RUN npm install -g @angular/cli
 
-# add app
+# add app - why is this not working
 COPY . /app
 
 # start app
