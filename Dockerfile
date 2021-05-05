@@ -1,54 +1,15 @@
 # base image
-FROM node:12.2.0
-
-# install chrome for protractor tests
-#RUN apt-get update && \
-#    apt-get install -y software-properties-common && \
-#    rm -rf /var/lib/apt/lists/*
-#RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
-#RUN sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
-#RUN apt-get update && apt-get install -yq google-chrome-stable
-
-# Use `node` user that `node:lts-alpine` provides
-#RUN mkdir -p /app
-#RUN chown node /app
-#USER node
-#WORKDIR /app
-
+FROM node:12.2.0 AS builder
 
 # set working directory
-WORKDIR /app
+WORKDIR /stundetsAngularApp
+COPY . .
+RUN npm i
+RUN npm run build --prod
 
-# set permissions to the user 
-CMD sudo chown -R $USER /app
-
-# add `/app/node_modules/.bin` to $PATH
-ENV PATH /app/node_modules/.bin:$PATH
-
-# install and cache app dependencies
-COPY package.json /app/package.json
-RUN npm install
-
-
-RUN sudo chown -R $USER /app
-RUN chmod 755 /app
-USER $USER
-
-
-COPY . /app
-RUN npm install -g @angular/cli
-
-
-# start app
-CMD ng serve --host 0.0.0.0 --port 4200
-
-EXPOSE 4200
-
-###### To Build the Docker Image run the following command
-# docker build -t studentsapp ./
-
-###### To Run the docker Image run the following command 
-# docker run -d -p 4200:4200 docker.io/library/studentsapp
+FROM nginx:latest
+COPY --from=builder /stundetsAngularApp/dist/my-dream-app /usr/share/nginx/html  
 
 #Refer:
-# https://mherman.org/blog/dockerizing-an-angular-app/ 
+# https://www.youtube.com/watch?v=G9b-R9ljuCw
+# Angular 10 Docker Tutorial | Dockerize Angular App and Deploy to Docker Hub [ STEP BY STEP GUIDE]
