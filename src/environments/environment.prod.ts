@@ -1,8 +1,8 @@
 
 export const environment = {
-  production: false,
-  _getUrl: "http://localhost:3000/students",
-  _postUrl: "http://localhost:3000/students/image",
-  _putUrl: "http://localhost:3000/students/",
-  _deleteUrl: "http://localhost:3000/students/"
+  production: true,
+  _getUrl: "http://com.raj.studentsapi:3000/students",
+  _postUrl: "http://com.raj.studentsapi:3000/students/image",
+  _putUrl: "http://com.raj.studentsapi:3000/students/",
+  _deleteUrl: "http://com.raj.studentsapi:3000/students/"
 };
